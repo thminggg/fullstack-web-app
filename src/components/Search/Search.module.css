@@ -1,9 +1,37 @@
+* {
+  font-family: Cormorant;
+}
+
 .searchBox {
   border-radius: 0.625rem;
   background: #fff;
   min-width: 80vw;
+  opacity: 0.8;
 
   @media screen(md) {
     min-width: 60vw;
   }
+}
+
+.searchBar {
+  border-radius: 0.625rem;
+  border: 1px solid #b3a6a6;
+}
+
+input:focus {
+  outline: none;
+}
+
+.btn {
+  width: 6rem;
+  color: #1e1e1e;
+  border-radius: 0.625rem;
+  border: 1px solid #ffd785;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.btn:hover,
+.activeBtn {
+  background: #ffd785;
 }

@@ -4,14 +4,12 @@ import Search from "./components/Search/Search";
 
 const Headline = () => {
   return (
-    // <div className="absolute top-1/4 w-full text-center">
     <>
       <p className={`${styles.slogan}`}>Real Estate Vancouver</p>
       <p className={`mt-3 ${styles.subtitle}`}>
         Real Estate for Sale & Rent in Canada
       </p>
     </>
-    // </div>
   );
 };
 
