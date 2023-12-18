@@ -1,0 +1,32 @@
+.backgroundImg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #fbf8f4;
+  min-height: 100vh;
+}
+
+.headline {
+  min-height: 70vh;
+}
+
+.slogan {
+  color: #000;
+  text-align: center;
+  font-family: Cinzel;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.5rem;
+}
+
+.subtitle {
+  color: #000;
+  text-align: center;
+  font-family: Cormorant;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.15rem;
+}

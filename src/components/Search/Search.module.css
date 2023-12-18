@@ -1,0 +1,9 @@
+.searchBox {
+  border-radius: 0.625rem;
+  background: #fff;
+  min-width: 80vw;
+
+  @media screen(md) {
+    min-width: 60vw;
+  }
+}

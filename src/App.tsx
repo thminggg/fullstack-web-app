@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from "./App.module.css";
+import Nav from "./components/Nav/Nav";
+import Search from "./components/Search/Search";
+
+const Headline = () => {
+  return (
+    // <div className="absolute top-1/4 w-full text-center">
+    <>
+      <p className={`${styles.slogan}`}>Real Estate Vancouver</p>
+      <p className={`mt-3 ${styles.subtitle}`}>
+        Real Estate for Sale & Rent in Canada
+      </p>
+    </>
+    // </div>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className={`relative min-h-screen max-w-7xl ${styles.backgroundImg}`}
+      style={{
+        backgroundImage: `url("/background.svg")`,
+      }}
+    >
+      <Nav />
+      <div className={`flex flex-col justify-center ${styles.headline}`}>
+        <Headline />
+        <Search />
+      </div>
     </div>
   );
 }
