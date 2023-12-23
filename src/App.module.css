@@ -6,15 +6,21 @@
   min-height: 100vh;
 }
 
-.headline {
-  min-height: 70vh;
+.transitionBlur {
+  position: absolute;
+  bottom: 0;
+  height: 300px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(251, 248, 244, 0) 50%,
+    #fbf8f4 95%
+  );
 }
 
 .slogan {
-  color: #000;
   text-align: center;
   font-family: Cinzel;
-  font-size: 3rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -22,7 +28,6 @@
 }
 
 .subtitle {
-  color: #000;
   text-align: center;
   font-family: Cormorant;
   font-style: normal;

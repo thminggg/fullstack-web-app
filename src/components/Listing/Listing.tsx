@@ -1,3 +1,9 @@
+import DetailSearch from "../DetailSearch/DetailSearch";
+
 export default function Listing() {
-  return <div>Listing</div>;
+  return (
+    <>
+      <DetailSearch />
+    </>
+  );
 }

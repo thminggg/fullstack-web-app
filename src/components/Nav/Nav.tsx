@@ -7,7 +7,7 @@ export default function Nav() {
         <img
           src="logo.svg"
           alt="logo"
-          className={`ml-3 pt-3 pb-3 ${styles.logo}`}
+          className={`ml-3 pt-3 pb-3 h-14 3xl:h-20`}
         />
       </a>
     </div>

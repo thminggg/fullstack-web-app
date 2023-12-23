@@ -1,0 +1,33 @@
+* {
+  font-family: Cormorant;
+}
+
+.searchBox {
+  border-radius: 0.625rem;
+  min-width: 80vw;
+
+  @media screen(md) {
+    min-width: 60vw;
+  }
+}
+
+.searchBar {
+  background-color: white;
+  border-radius: 0.625rem;
+  border: 1px solid #b3a6a6;
+}
+
+.mapButton {
+  color: #fff;
+  border-radius: 0.625rem;
+  background-color: #1e1e1e;
+}
+
+input:focus {
+  outline: none;
+}
+
+.optionBtn {
+  border-radius: 0.625rem;
+  background-color: #fff;
+}
