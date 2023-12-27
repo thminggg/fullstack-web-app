@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
+import FeatureCard from "./components/FeatureCard/FeatureCard";
 import Nav from "./components/Nav/Nav";
 import Search from "./components/Search/Search";
-import ListingCard from "./components/ListingCard/ListingCard";
+import { randomAddress, randomAddressInProvince } from "./utils/address";
 
 const Slogan = () => {
   return (
@@ -16,7 +18,20 @@ const Slogan = () => {
   );
 };
 
-function App() {
+const fetchAddress = async (
+  setAddresses: React.Dispatch<React.SetStateAction<string[]>>
+) => {
+  const addresses = await randomAddressInProvince("BC");
+  setAddresses(addresses);
+};
+
+export default function App() {
+  const [featureAddresses, setFeatureAddresses] = useState([""]);
+
+  useEffect(() => {
+    fetchAddress(setFeatureAddresses);
+  }, []);
+
   return (
     <div className="relative min-h-screen pb-9">
       <Nav />
@@ -32,14 +47,24 @@ function App() {
         <div className="mt-6 p-6 md:w-8/12 mx-auto">
           <div className="w-full mb-3 text-lg font-bold">Top Deals</div>
           <div className="flex flex-wrap md:flex-nowrap gap-3">
-            <ListingCard />
-            <ListingCard />
-            <ListingCard />
+            <FeatureCard
+              title="The Modern"
+              description={randomAddress(featureAddresses)}
+              image="townhouse/pic1.jpg"
+            />
+            <FeatureCard
+              title="The Modern"
+              description={randomAddress(featureAddresses)}
+              image="townhouse/pic1.jpg"
+            />
+            <FeatureCard
+              title="The Modern"
+              description={randomAddress(featureAddresses)}
+              image="townhouse/pic1.jpg"
+            />
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-export default App;
