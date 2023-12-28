@@ -1,8 +1,10 @@
-import React from "react";
+import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Card } from "flowbite-react";
 
-const CustomImg: React.FC<{ src: string }> = ({ src }) => {
-  return <img className="rounded-t-lg" src={src} alt="building" />;
+const customTheme: CustomFlowbiteTheme["card"] = {
+  img: {
+    base: "md:w-full md:h-28 md:aspect-square object-cover",
+  },
 };
 
 export default function FeatureCard({
@@ -16,8 +18,9 @@ export default function FeatureCard({
 }) {
   return (
     <Card
-      className="grow bg-white cursor-pointer z-10"
-      renderImage={() => <CustomImg src={image} />}
+      theme={customTheme}
+      className="bg-white cursor-pointer z-10 md:flex-1"
+      imgSrc={image}
     >
       <h5 className="text-xl font-bold tracking-tight text-gray-900">
         {title}
