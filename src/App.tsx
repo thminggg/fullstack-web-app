@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import FeatureDeal from "./components/FeatureDeal/FeatureDeal";
 import Nav from "./components/Nav/Nav";
 import Search from "./components/Search/Search";
-import { fetchAddresses } from "./utils/address";
 
 const Slogan = () => {
   return (
