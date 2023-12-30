@@ -3,7 +3,7 @@ import { Card } from "flowbite-react";
 
 const customTheme: CustomFlowbiteTheme["card"] = {
   img: {
-    base: "md:w-full md:h-28 md:aspect-square object-cover",
+    base: "md:w-auto md:h-auto md:aspect-square object-cover",
   },
 };
 

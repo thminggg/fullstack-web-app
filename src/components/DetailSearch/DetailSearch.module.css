@@ -2,15 +2,6 @@
   font-family: Cormorant;
 }
 
-.searchBox {
-  border-radius: 0.625rem;
-  min-width: 80vw;
-
-  @media screen(md) {
-    min-width: 60vw;
-  }
-}
-
 .searchBar {
   background-color: white;
   border-radius: 0.625rem;
@@ -27,7 +18,10 @@ input:focus {
   outline: none;
 }
 
+.filterBtn {
+  border: 1px solid #b3a6a6;
+}
+
 .optionBtn {
-  border-radius: 0.625rem;
-  background-color: #fff;
+  border: 1px solid #b3a6a6;
 }

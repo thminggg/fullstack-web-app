@@ -5,7 +5,7 @@ export default function Nav() {
     <div className={`flex items-center w-full ${styles.navBar}`}>
       <a href="/">
         <img
-          src="logo.svg"
+          src="/logo.svg"
           alt="logo"
           className={`ml-3 pt-3 pb-3 h-14 3xl:h-20`}
         />

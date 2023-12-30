@@ -1,6 +1,5 @@
 import styles from "./App.module.css";
 import FeatureDeal from "./components/FeatureDeal/FeatureDeal";
-import Nav from "./components/Nav/Nav";
 import Search from "./components/Search/Search";
 
 const Slogan = () => {
@@ -18,19 +17,16 @@ const Slogan = () => {
 
 export default function App() {
   return (
-    <div className="relative min-h-screen pb-9">
-      <Nav />
-      <section
-        className={`relative flex flex-col justify-center ${styles.backgroundImg}`}
-        style={{
-          backgroundImage: `url("/background.svg")`,
-        }}
-      >
-        <Slogan />
-        <Search />
-        <div className={`${styles.transitionBlur}`} />
-        <FeatureDeal />
-      </section>
-    </div>
+    <section
+      className={`relative flex flex-col justify-center ${styles.backgroundImg}`}
+      style={{
+        backgroundImage: `url("/background.svg")`,
+      }}
+    >
+      <Slogan />
+      <Search />
+      <div className={`${styles.transitionBlur}`} />
+      <FeatureDeal />
+    </section>
   );
 }
