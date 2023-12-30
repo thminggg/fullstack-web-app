@@ -1,14 +1,9 @@
-.datePicker {
-  display: flex;
-  width: 100%;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  column-gap: 5%;
+.datePickerContainer::-webkit-scrollbar {
+  display: none;
 }
 
-.datePicker::-webkit-scrollbar {
-  /*Chrome, Safari, Edge*/
-  display: none;
+.datePicker {
+  column-gap: 5%;
 }
 
 /**
