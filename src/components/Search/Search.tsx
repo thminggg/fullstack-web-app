@@ -12,12 +12,14 @@ export default function Search() {
           <button
             className={`${styles.btn} ${isBuy && styles.activeBtn}`}
             onClick={() => setIsBuy(true)}
+            title="buy"
           >
             Buy
           </button>
           <button
             className={`${styles.btn} ${!isBuy && styles.activeBtn}`}
             onClick={() => setIsBuy(false)}
+            title="rent"
           >
             Rent
           </button>
@@ -30,6 +32,7 @@ export default function Search() {
           <button
             className="absolute right-3 z-10"
             onClick={() => console.log("search")}
+            title="search"
           >
             <FaSearch />
           </button>
