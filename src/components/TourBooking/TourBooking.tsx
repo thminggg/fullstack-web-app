@@ -1,6 +1,6 @@
-import styles from "./TourBooking.module.css";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import styles from "./TourBooking.module.css";
 
 const TOUR_BUTTON_WIDTH = 105;
 const NUM_OF_TOUR_BUTTON_PER_SECTION = 3;
@@ -8,6 +8,10 @@ const NUM_OF_TOUR_BUTTON_PER_SECTION = 3;
 const DatePickerButton = ({ date }: { date: string }) => (
   <button className={`py-12 rounded-lg ${styles.datePickerBtn}`}>{date}</button>
 );
+
+const handleStopScrolling = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+  document.getElementById(e.currentTarget.id)!.scrollLeft = 0;
+};
 
 const DatePicker = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -45,7 +49,11 @@ const DatePicker = () => {
       >
         <FaArrowRight />
       </button>
-      <div className={`w-full overflow-x-scroll ${styles.datePickerContainer}`}>
+      <div
+        id="date-picker-container"
+        className={`w-full overflow-x-scroll ${styles.hiddenScrollBar}`}
+        onScroll={handleStopScrolling}
+      >
         <div
           className={`flex w-full ${styles.datePicker}`}
           style={{

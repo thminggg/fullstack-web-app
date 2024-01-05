@@ -1,4 +1,4 @@
-.datePickerContainer::-webkit-scrollbar {
+.hiddenScrollBar::-webkit-scrollbar {
   display: none;
 }
 
