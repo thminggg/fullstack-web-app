@@ -18,21 +18,25 @@ const DatePicker = () => {
 
   // TODO: fetch number of tour days
   const tourDays = 10;
+  const maxScroll =
+    TOUR_BUTTON_WIDTH * Math.floor(tourDays / NUM_OF_TOUR_BUTTON_PER_SECTION);
 
   const handleScrollLeft = () => {
     const newPosition = scrollPosition - TOUR_BUTTON_WIDTH;
-    setScrollPosition(Math.max(newPosition, 0));
+
+    // Scroll to last
+    if (newPosition < 0) return setScrollPosition(maxScroll);
+
+    setScrollPosition(newPosition);
   };
 
   const handleScrollRight = () => {
     const newPosition = scrollPosition + TOUR_BUTTON_WIDTH;
-    setScrollPosition(
-      Math.min(
-        newPosition,
-        TOUR_BUTTON_WIDTH *
-          Math.floor(tourDays / NUM_OF_TOUR_BUTTON_PER_SECTION)
-      )
-    );
+
+    // Scroll to beginning
+    if (newPosition > maxScroll) return setScrollPosition(0);
+
+    setScrollPosition(newPosition);
   };
 
   return (
