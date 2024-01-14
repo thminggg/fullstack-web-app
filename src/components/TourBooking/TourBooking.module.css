@@ -35,3 +35,11 @@
   background-color: grey;
   opacity: 0.5;
 }
+
+.btn {
+  color: #1e1e1e;
+  border-radius: 0.625rem;
+  border: 1px solid #ffd785;
+  background-color: #ffd785;
+  text-align: center;
+}

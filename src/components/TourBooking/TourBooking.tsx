@@ -40,44 +40,51 @@ const DatePicker = () => {
   };
 
   return (
-    <div className="w-full relative">
-      <button
-        className={`h-full left-0 ${styles.arrow}`}
-        onClick={() => handleScrollLeft()}
-      >
-        <FaArrowLeft />
-      </button>
-      <button
-        className={`h-full right-0 ${styles.arrow}`}
-        onClick={() => handleScrollRight()}
-      >
-        <FaArrowRight />
-      </button>
-      <div
-        id="date-picker-container"
-        className={`w-full overflow-x-scroll ${styles.hiddenScrollBar}`}
-        onScroll={handleStopScrolling}
-      >
-        <div
-          className={`flex w-full ${styles.datePicker}`}
-          style={{
-            transform: `translateX(${-scrollPosition}%)`,
-            transition: "transform 0.5s ease",
-          }}
+    <>
+      <div className="w-full relative">
+        <button
+          className={`h-full left-0 ${styles.arrow}`}
+          onClick={() => handleScrollLeft()}
         >
-          <DatePickerButton date="1" />
-          <DatePickerButton date="2" />
-          <DatePickerButton date="3" />
-          <DatePickerButton date="4" />
-          <DatePickerButton date="5" />
-          <DatePickerButton date="6" />
-          <DatePickerButton date="7" />
-          <DatePickerButton date="8" />
-          <DatePickerButton date="9" />
-          <DatePickerButton date="10" />
+          <FaArrowLeft />
+        </button>
+        <button
+          className={`h-full right-0 ${styles.arrow}`}
+          onClick={() => handleScrollRight()}
+        >
+          <FaArrowRight />
+        </button>
+        <div
+          id="date-picker-container"
+          className={`w-full overflow-x-scroll ${styles.hiddenScrollBar}`}
+          onScroll={handleStopScrolling}
+        >
+          <div
+            className={`flex w-full ${styles.datePicker}`}
+            style={{
+              transform: `translateX(${-scrollPosition}%)`,
+              transition: "transform 0.7s ease",
+            }}
+          >
+            <DatePickerButton date="1" />
+            <DatePickerButton date="2" />
+            <DatePickerButton date="3" />
+            <DatePickerButton date="4" />
+            <DatePickerButton date="5" />
+            <DatePickerButton date="6" />
+            <DatePickerButton date="7" />
+            <DatePickerButton date="8" />
+            <DatePickerButton date="9" />
+            <DatePickerButton date="10" />
+          </div>
         </div>
       </div>
-    </div>
+      <button
+        className={`mt-3 mx-auto w-1/2 font-bold p-3 rounded-lg ${styles.btn}`}
+      >
+        Request A Tour
+      </button>
+    </>
   );
 };
 
