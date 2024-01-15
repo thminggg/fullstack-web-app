@@ -1,6 +1,9 @@
 import { Carousel } from "flowbite-react";
 import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import Broker from "../../components/Broker/Broker";
+import HomeDetail from "../../components/HomeDetail/HomeDetail";
+import HomeOverview from "../../components/HomeOverview/HomeOverview";
 import TourBooking from "../../components/TourBooking/TourBooking";
 import { formatCurrency } from "../../utils/number";
 
@@ -49,19 +52,20 @@ export default function Unit() {
 
   return (
     <div className="px-6 md:px-24 lg:px-30">
-      <div className="flex flex-wrap lg:flex-nowrap py-6 px-6 gap-6">
-        <div className="w-full lg:w-7/12">
+      <div className="flex flex-wrap justify-between lg:flex-nowrap py-6 px-6 gap-6">
+        <div className="w-full lg:w-8/12">
           <div className="flex flex-col gap-3">
             <PriceAndMortgage />
             <Address />
             <BasicInfo />
             <Gallery />
+            <HomeOverview />
+            <HomeDetail />
           </div>
         </div>
-        <div className="w-full lg:w-4/12 lg:grow lg:mx-auto">
-          <div className="lg:sticky lg:top-3">
-            <TourBooking handleSetTourDate={setTourDate} />
-          </div>
+        <div className="w-full lg:w-1/12 lg:grow lg:mx-auto">
+          <Broker />
+          <TourBooking handleSetTourDate={setTourDate} />
         </div>
       </div>
     </div>
