@@ -1,7 +1,7 @@
 export default function HomeOverview() {
   return (
-    <div className="p-9 rounded-lg bg-white">
-      <div className="font-bold text-xl mb-6">About this home</div>
+    <div className="px-3 py-9 rounded-lg bg-white">
+      <div className="font-bold text-2xl mb-6">About this home</div>
       <div>
         Welcome to this delightful 1-bedroom, 1-bath condo, a perfect blend of
         comfort and convenience in the city. The open-plan living area is bright
