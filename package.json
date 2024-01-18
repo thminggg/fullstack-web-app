@@ -1,5 +1,5 @@
 {
-  "name": "real-estate",
+  "name": "@thminggg/real-estate",
   "private": true,
   "workspaces": [
     "packages/*"
