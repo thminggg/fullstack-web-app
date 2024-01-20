@@ -1,0 +1,35 @@
+{
+  "name": "@thminggg/backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "yarn run clean && tsc && tsc-alias",
+    "dev": "yarn run compile && node ./dist/index.js",
+    "dev:watch": "nodemon -e ts --ignore dist/ --exec \"yarn run dev\""
+  },
+  "keywords": [],
+  "author": "Patrick T",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.0.0",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@graphql-tools/merge": "^9.0.0",
+    "@graphql-tools/mock": "^8.7.6",
+    "@graphql-tools/schema": "^9.0.4",
+    "@graphql-tools/utils": "^10.0.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "graphql": "^16.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.6",
+    "nodemon": "^3.0.1",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.2.2"
+  }
+}
