@@ -10,7 +10,7 @@ export default function FeatureDeal() {
   }, []);
 
   return (
-    <div className="mt-6 p-6 md:w-8/12 mx-auto">
+    <div className="mt-6 p-6 lg:w-8/12 mx-auto">
       <div className="w-full mb-3 text-lg font-bold">Top Deals</div>
       <div className="flex flex-wrap md:flex-nowrap gap-3">
         <FeatureCard
