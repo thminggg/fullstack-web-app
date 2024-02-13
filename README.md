@@ -1,6 +1,6 @@
 # Real Estate
 
-Fullstack web developement project to utilize following stacks:
+Fullstack web developement project of real estate to utilize following stacks:
 
 1. ReactJS
 2. GraphQL
