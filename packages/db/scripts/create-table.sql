@@ -1,71 +1,60 @@
-CREATE EXTENSION dblink;
-
-DO
-$do$
-BEGIN
-   IF NOT EXISTS (SELECT FROM pg_database WHERE datname = 'real_estate_db') THEN
-      PERFORM dblink_exec('dbname=' || current_database(), 'CREATE DATABASE real_estate_db');
-   END IF;
-END
-$do$;
-
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS public.user (
   user_id UUID PRIMARY KEY,
-  email VARCHAR NOT NULL,
-  username VARCHAR,
-  phone VARCHAR,
-  access_right VARCHAR,
+  email VARCHAR(255) NOT NULL,
+  username VARCHAR(255),
+  phone VARCHAR(255),
+  access_right VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS broker_company (
+CREATE TABLE IF NOT EXISTS public.broker_company (
   broker_company_id	UUID PRIMARY KEY,
-  name	VARCHAR NOT NULL,
-  phone	VARCHAR NOT NULL,
+  name	VARCHAR(255) NOT NULL,
+  phone	VARCHAR(255) NOT NULL,
   address	TEXT,
-  city	VARCHAR,
-  province VARCHAR,
-  zip	VARCHAR,
-  country	VARCHAR,
+  city	VARCHAR(255),
+  province VARCHAR(255),
+  zip	VARCHAR(255),
+  country	VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS broker (
+CREATE TABLE IF NOT EXISTS public.broker (
   broker_id	UUID PRIMARY KEY,
-  name VARCHAR,
-  phone	VARCHAR,
+  name VARCHAR(255),
+  phone	VARCHAR(255),
   -- FK
-  broker_company_id	UUID REFERENCES broker_company(broker_company_id),
+  broker_company_id	UUID REFERENCES public.broker_company(broker_company_id)
 );
 
-CREATE TABLE IF NOT EXISTS tour (
+CREATE TABLE IF NOT EXISTS public.tour (
   tour_id UUID PRIMARY KEY,
   tour_time TIMESTAMP NOT NULL,
-  quota SMALLINT,
+  quota SMALLINT
 );
 
-CREATE TABLE IF NOT EXISTS tour_booking (
+CREATE TABLE IF NOT EXISTS public.tour_booking (
   tour_booking_id UUID PRIMARY KEY,
   -- FK
-  user_id UUID REFERENCES user(user_id),
-  tour_id UUID REFERENCES tour(tour_id),
+  user_id UUID REFERENCES public.user(user_id),
+  tour_id UUID REFERENCES public.tour(tour_id)
 );
 
-CREATE TABLE IF NOT EXISTS property (
+CREATE TABLE IF NOT EXISTS public.property (
   property_id UUID PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  address VARCHAR NOT NULL,
-  city VARCHAR NOT NULL,
-  province VARCHAR NOT NULL,
-  zip	VARCHAR,
-  country	VARCHAR,
+  name VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  province VARCHAR(255) NOT NULL,
+  zip	VARCHAR(255),
+  country	VARCHAR(255),
   listing_price	NUMERIC(12,6),
   num_of_bathroom	SMALLINT,
   num_of_bedroom SMALLINT,
   num_of_view	SMALLINT,
-  listed_timestamp TIMESTAMP NOT NULL,,
+  listed_timestamp TIMESTAMP NOT NULL,
   size SMALLINT,
-  type VARCHAR,
+  type VARCHAR(255),
   overview TEXT,
   -- FK
-  broker_id UUID REFERENCES broker(broker_id),
-  tour_id UUID REFERENCES tour(tour_id),
+  broker_id UUID REFERENCES public.broker(broker_id),
+  tour_id UUID REFERENCES public.tour(tour_id)
 );
