@@ -1,0 +1,20 @@
+{
+  "name": "@thminggg/db",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "keywords": [],
+  "author": "Patrick T",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "yarn run clean && tsc && tsc-alias"
+  },
+  "dependencies": {
+    "postgres": "^3.4.4"
+  },
+  "types": "@types/index.d.ts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.js.map"
+  ]
+}
