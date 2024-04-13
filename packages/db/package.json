@@ -16,5 +16,8 @@
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map"
-  ]
+  ],
+  "devDependencies": {
+    "csv-parser": "^3.0.0"
+  }
 }
