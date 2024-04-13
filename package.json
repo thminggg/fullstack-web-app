@@ -5,6 +5,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "dev": "chmod +x ./scripts/dev.sh && ./scripts/dev.sh"
+  },
   "devDependencies": {
     "@types/node": "^20.9.0",
     "lerna": "^7.4.2",
