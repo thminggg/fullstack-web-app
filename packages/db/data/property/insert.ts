@@ -1,17 +1,15 @@
-import fs from "fs";
 import csv from "csv-parser";
+import fs from "fs";
 import postgresSQL from "../../db";
-import { getRandomTimestamp } from "../utils/randomTimestamp";
+import { getRandomCity } from "../utils/randomCity";
 import { getRandomHousingType } from "../utils/randomHouseType";
+import { getRandomPostalCode } from "../utils/randomPostal";
+import { getRandomTimestamp } from "../utils/randomTimestamp";
 
-function processData(data) {
+function processData(data, province, country) {
   const {
     name,
     address,
-    city,
-    province,
-    zip,
-    country,
     listing_price,
     num_of_bathroom,
     num_of_bedroom,
@@ -40,9 +38,9 @@ function processData(data) {
         gen_random_uuid(),
         ${name},
         ${address},
-        ${city},
+        ${getRandomCity(province)},
         ${province},
-        ${zip},
+        ${getRandomPostalCode()},
         ${country},
         ${listing_price},
         ${num_of_bathroom},
@@ -55,12 +53,16 @@ function processData(data) {
   `;
 }
 
-async function insertData() {
-  const stream = fs.createReadStream("bc.csv").pipe(csv());
+const insertData = () => {
+  const [province, country = "Canada"] = process.argv.slice(2);
+  const stream = fs
+    .createReadStream(`${province.toLocaleLowerCase()}.csv`)
+    .pipe(csv());
   const insertionPromises = [];
 
   stream.on("data", (data) => {
-    insertionPromises.push(processData(data));
+    console.log(data, province, country);
+    insertionPromises.push(processData(data, province, country.toUpperCase()));
   });
 
   stream.on("end", async () => {
@@ -68,6 +70,6 @@ async function insertData() {
     console.log("Data Inserted!!");
     process.exit(); // Exit the process after all data is inserted
   });
-}
+};
 
 insertData();
