@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "compile": "yarn run clean && tsc && tsc-alias",
-    "dev": "yarn run compile && node ./dist/index.js",
+    "dev": "npx lerna run compile && node ./dist/index.js",
     "dev:watch": "nodemon -e ts --ignore dist/ --exec \"yarn run dev\""
   },
   "keywords": [],
