@@ -1,3 +1,4 @@
+import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -6,8 +7,10 @@ import ErrorPage from "./containers/ErrorPage/ErrorPage";
 import Listing from "./containers/Listing/Listing";
 import RootLayout from "./containers/RootLayout/RootLayout";
 import Unit from "./containers/Unit/Unit";
+import ApolloClientInstance from "./graphql/apolloClient";
 import "./index.css";
 
+// React Router
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +41,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ApolloProvider client={ApolloClientInstance}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
   </React.StrictMode>
 );

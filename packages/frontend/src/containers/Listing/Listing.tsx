@@ -1,30 +1,40 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { Property } from "@thminggg/db";
 import DetailSearch from "../../components/DetailSearch/DetailSearch";
+import Error from "../../components/Error/Error";
 import ListingCard from "../../components/ListingCard/ListingCard";
-import { fetchAddresses } from "../../utils/address";
+import Loader from "../../components/Loader/Loader";
+import { GET_PROPERTIES } from "../../graphql/queries/getProperties";
 import { randomRangeInArray } from "../../utils/utils";
 
 export default function Listing() {
-  const [addresses, setAddresses] = useState<string[]>([]);
+  const { loading, error, data } = useQuery(GET_PROPERTIES);
 
-  useEffect(() => {
-    fetchAddresses("BC", setAddresses);
-  }, []);
+  if (loading) return <Loader />;
+  if (error) return <Error error={error} />;
+  const { properties }: { properties: Property[] } = data;
 
   return (
     <div className="px-6 md:px-36 lg:px-72">
       <DetailSearch />
+      <div className="mt-3 text-xs text-center">
+        {properties.length} Results
+      </div>
       <div className="flex flex-wrap gap-3 justify-center mt-6">
-        {randomRangeInArray(addresses, 10).map((address, index) => (
-          <ListingCard
-            key={index}
-            title="The Modern"
-            description={address}
-            image={`condos/${
-              (index % Number(process.env.REACT_APP_CONDOS_IMG)) + 1
-            }.jpg`}
-          />
-        ))}
+        {randomRangeInArray(properties, 10).map(
+          ({ name, address, city, listing_price }, index) => (
+            <ListingCard
+              key={index}
+              title={name}
+              city={city}
+              description={address}
+              listingPrice={listing_price}
+              image={`condos/${
+                (index % Number(process.env.REACT_APP_CONDOS_IMG)) + 1
+              }.jpg`}
+            />
+          )
+        )}
       </div>
     </div>
   );

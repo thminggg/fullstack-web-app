@@ -55,7 +55,6 @@ export default function DetailSearch() {
         <FilterButton>4+ BED</FilterButton>
         <FilterButton>5+ BED</FilterButton>
       </div>
-      <div className="mt-3 text-xs text-center">500+ Results</div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ export type Property = {
   province: string;
   zip?: string;
   country?: string;
-  listing_price?: string;
+  listing_price?: number;
   num_of_bathroom?: string;
   num_of_bedroom?: string;
   num_of_view?: string;
