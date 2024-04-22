@@ -1,6 +1,6 @@
 export default /* GraphQL */ `
   type Property {
-    property_id: String
+    property_id: String!
     name: String
     address: String
     city: String
