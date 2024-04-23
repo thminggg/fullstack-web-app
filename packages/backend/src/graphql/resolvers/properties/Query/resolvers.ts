@@ -2,6 +2,9 @@ import { properties } from "@thminggg/db";
 
 export default {
   Query: {
-    properties: async () => await properties.getProperties(),
+    properties: async () => {
+      const { data, count } = await properties.getProperties();
+      return { data, count };
+    },
   },
 };

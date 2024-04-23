@@ -19,7 +19,12 @@ export default /* GraphQL */ `
     tour_id: String
   }
 
+  type DBResult {
+    data: [Property]
+    count: Int!
+  }
+
   type Query {
-    properties: [Property]
+    properties: DBResult
   }
 `;
