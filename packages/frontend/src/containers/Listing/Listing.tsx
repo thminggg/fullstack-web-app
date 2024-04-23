@@ -21,20 +21,15 @@ export default function Listing() {
         {properties.length} Results
       </div>
       <div className="flex flex-wrap gap-3 justify-center mt-6">
-        {randomRangeInArray(properties, 10).map(
-          ({ name, address, city, listing_price }, index) => (
-            <ListingCard
-              key={index}
-              title={name}
-              city={city}
-              description={address}
-              listingPrice={listing_price}
-              image={`condos/${
-                (index % Number(process.env.REACT_APP_CONDOS_IMG)) + 1
-              }.jpg`}
-            />
-          )
-        )}
+        {randomRangeInArray(properties, 10).map((property, index) => (
+          <ListingCard
+            key={index}
+            property={property}
+            image={`condos/${
+              (index % Number(process.env.REACT_APP_CONDOS_IMG)) + 1
+            }.jpg`}
+          />
+        ))}
       </div>
     </div>
   );

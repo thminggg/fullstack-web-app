@@ -2,6 +2,7 @@ import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Card } from "flowbite-react";
 import { formatCurrency } from "../../utils/number";
 import styles from "./ListingCard.module.css";
+import { Property } from "@thminggg/db";
 
 const customTheme: CustomFlowbiteTheme["card"] = {
   root: {
@@ -18,29 +19,34 @@ const customTheme: CustomFlowbiteTheme["card"] = {
 };
 
 export default function ListingCard({
-  title,
-  description,
-  city,
+  property,
   image,
-  listingPrice,
 }: {
-  title: string;
-  description: string;
-  city: string;
+  property: Property;
   image: string;
-  listingPrice?: number;
 }) {
+  const {
+    name,
+    address,
+    city,
+    province,
+    listing_price,
+    num_of_bathroom,
+    num_of_bedroom,
+    size,
+  } = property;
   return (
     <Card theme={customTheme} horizontal imgSrc={image}>
       <div className="flex flex-col h-full justify-center gap-3">
-        <p
-          className={`${styles.listingPrice} text-2xl font-bold tracking-tighter`}
-        >
-          {listingPrice && formatCurrency(listingPrice)}
+        <p className={`${styles.listing_price} text-2xl font-bold`}>
+          {listing_price && formatCurrency(listing_price)}
         </p>
-        <h5 className="text-md font-semibold">{title}</h5>
-        <p className="text-sm">
-          {description} • {city}
+        <h5 className="text-md font-semibold">{name}</h5>
+        <p className="text-md">
+          {address} • {city} • {province}
+        </p>
+        <p className="text-md">
+          {num_of_bathroom} bd • {num_of_bedroom} ba • {size} sqft
         </p>
       </div>
     </Card>
