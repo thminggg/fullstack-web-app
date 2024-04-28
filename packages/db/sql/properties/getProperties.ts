@@ -1,7 +1,7 @@
+import { DBResult } from "../../@types";
 import { Property } from "../../@types/property";
 import { SCHEMA } from "../../const";
 import postgresSQL from "../../db";
-import { DBResult } from "../../@types";
 import { getCount } from "../common/count";
 
 /**
@@ -23,7 +23,7 @@ import { getCount } from "../common/count";
 export const getProperties = async (
   pageSize: number = 20,
   offset: number = 0
-): Promise<any> => {
+): Promise<DBResult<Property>> => {
   const table = postgresSQL`${postgresSQL(SCHEMA)}.property`;
 
   const proerties: Property[] = await postgresSQL`
