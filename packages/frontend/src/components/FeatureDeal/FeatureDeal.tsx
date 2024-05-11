@@ -19,12 +19,12 @@ export default function FeatureDeal() {
           image="townhouses/1.jpg"
         />
         <FeatureCard
-          title="The Modern"
+          title="Park Royal"
           description={randomAddress(featureAddresses)}
           image="townhouses/2.jpg"
         />
         <FeatureCard
-          title="The Modern"
+          title="Riviera Gardens"
           description={randomAddress(featureAddresses)}
           image="townhouses/3.jpg"
         />
