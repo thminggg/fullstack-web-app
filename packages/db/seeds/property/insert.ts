@@ -5,7 +5,7 @@ import postgresSQL from "../../db";
 import { getRandomCity } from "../utils/randomCity";
 import { getRandomHousingType } from "../utils/randomHouseType";
 import { getRandomIds } from "../utils/randomIds";
-import { getRandomItemFromArr } from "../utils/randomItem";
+import { getRandomItemFromArr } from "../utils/randomItemFromArr";
 import { getRandomPostalCode } from "../utils/randomPostal";
 import { getRandomTimestamp } from "../utils/randomTimestamp";
 
