@@ -1,9 +1,10 @@
 import csv from "csv-parser";
 import fs from "fs";
+import path from "path";
 import postgresSQL from "../../db";
 import { getRandomCity } from "../utils/randomCity";
-import { getRandomPostalCode } from "../utils/randomPostal";
 import { getRandomPhoneNumber } from "../utils/randomPhoneNumber";
+import { getRandomPostalCode } from "../utils/randomPostal";
 
 const processData = (data, province, country) => {
   const { name, address } = data;
@@ -36,16 +37,20 @@ const insertData = () => {
   const numOfRecords = 100;
   const [province, country = "Canada"] = process.argv.slice(2);
   const stream = fs
-    .createReadStream(`${province.toLocaleLowerCase()}.csv`)
+    .createReadStream(
+      path.join(__dirname, `../data/${province.toLocaleLowerCase()}.csv`)
+    )
     .pipe(csv());
   const insertionPromises = [];
-  let counter = 0;
 
   stream.on("data", (data) => {
-    insertionPromises.push(processData(data, province, country.toUpperCase()));
-    counter++;
-
-    if (counter === numOfRecords) stream.destroy();
+    if (insertionPromises.length < numOfRecords) {
+      insertionPromises.push(
+        processData(data, province, country.toUpperCase())
+      );
+    } else {
+      stream.destroy();
+    }
   });
 
   stream.on("close", async (err) => {
@@ -54,7 +59,7 @@ const insertData = () => {
       process.exit(1);
     });
     console.log("Data Inserted!!");
-    console.log(`${counter} ${province} records inserted!`);
+    console.log(`${insertionPromises.length} ${province} records inserted!`);
     process.exit(0);
   });
 };

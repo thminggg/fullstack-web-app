@@ -1,5 +1,6 @@
 import csv from "csv-parser";
 import fs from "fs";
+import path from "path";
 import { Property } from "../../@types";
 import postgresSQL from "../../db";
 import { getRandomCity } from "../utils/randomCity";
@@ -67,7 +68,9 @@ const insertData = () => {
   const [province, country = "Canada"] = process.argv.slice(2);
   const brokerIds = getRandomIds();
   const stream = fs
-    .createReadStream(`${province.toLocaleLowerCase()}.csv`)
+    .createReadStream(
+      path.join(__dirname, `../data/${province.toLocaleLowerCase()}.csv`)
+    )
     .pipe(csv());
   const insertionPromises = [];
 
