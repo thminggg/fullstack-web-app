@@ -7,4 +7,5 @@ Fullstack web developement project of real estate to utilize following stacks:
 3. Postgres DB
 4. Docker
 5. K8S
-6. Mono Repository with `lerna`
+6. Bash
+7. Mono Repository with `lerna`
