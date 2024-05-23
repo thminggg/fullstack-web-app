@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { Property } from "@thminggg/db";
+import { useSearchParams } from "react-router-dom";
 import DetailSearch from "../../components/DetailSearch/DetailSearch";
 import Error from "../../components/Error/Error";
 import ListingCard from "../../components/ListingCard/ListingCard";
@@ -14,7 +15,20 @@ type QueryResult = {
 };
 
 export default function Listing() {
-  const { loading, error, data: queryResult } = useQuery(GET_PROPERTIES);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pageSize = searchParams.get("size");
+  const page = searchParams.get("page");
+
+  const {
+    loading,
+    error,
+    data: queryResult,
+  } = useQuery(GET_PROPERTIES, {
+    variables: {
+      pageSize: parseInt(pageSize || "20"),
+      offset: parseInt(page || "0"),
+    },
+  });
 
   if (loading) return <Loader />;
   if (error) return <Error error={error} />;
