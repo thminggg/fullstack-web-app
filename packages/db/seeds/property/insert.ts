@@ -5,7 +5,6 @@ import { Property } from "../../@types";
 import postgresSQL from "../../db";
 import { getRandomCity } from "../utils/randomCity";
 import { getRandomHousingType } from "../utils/randomHouseType";
-import { getRandomIds } from "../utils/randomIds";
 import { getRandomItemFromArr } from "../utils/randomItemFromArr";
 import { getRandomPostalCode } from "../utils/randomPostal";
 import { getRandomTimestamp } from "../utils/randomTimestamp";
@@ -14,7 +13,7 @@ const processData = (
   data: Property,
   province: string,
   country: string,
-  brokerIds: string[]
+  brokerId: string
 ) => {
   const {
     name,
@@ -58,15 +57,19 @@ const processData = (
         ${num_of_view},
         ${Math.floor(getRandomTimestamp() / 1000)},
         ${size},
-        ${getRandomHousingType()}
-        ${getRandomItemFromArr(brokerIds)}
+        ${getRandomHousingType()},
+        ${brokerId}
       );
   `;
 };
 
-const insertData = () => {
+const getBrokerIds = () => {
+  return postgresSQL`SELECT broker_id FROM public.broker`;
+};
+
+const insertData = async () => {
   const [province, country = "Canada"] = process.argv.slice(2);
-  const brokerIds = getRandomIds();
+  const brokerIds = await getBrokerIds();
   const stream = fs
     .createReadStream(
       path.join(__dirname, `../data/${province.toLocaleLowerCase()}.csv`)
@@ -77,7 +80,12 @@ const insertData = () => {
   stream.on("data", (data) => {
     console.log(data, province, country);
     insertionPromises.push(
-      processData(data, province, country.toUpperCase(), brokerIds)
+      processData(
+        data,
+        province,
+        country.toUpperCase(),
+        getRandomItemFromArr(brokerIds).broker_id
+      )
     );
   });
 

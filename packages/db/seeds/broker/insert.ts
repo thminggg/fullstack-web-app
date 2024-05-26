@@ -29,7 +29,7 @@ const getBrokerCompany = () => {
 };
 
 const insertData = async () => {
-  const numOfRecords = 50;
+  const numOfRecords = 100;
   const [province] = process.argv.slice(2);
   const stream = fs
     .createReadStream(
