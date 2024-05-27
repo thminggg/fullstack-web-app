@@ -6,6 +6,7 @@ import Error from "../../components/Error/Error";
 import ListingCard from "../../components/ListingCard/ListingCard";
 import Loader from "../../components/Loader/Loader";
 import { GET_PROPERTIES } from "../../graphql/queries/getProperties";
+import { clamp } from "../../utils/utils";
 
 type QueryResult = {
   properties: {
@@ -14,10 +15,18 @@ type QueryResult = {
   };
 };
 
+const PAGE_SIZE = 20;
+const PAGE_SIZE_MAX = 50;
+const PAGE = 1;
+const pageSizeClamp = clamp(PAGE_SIZE, PAGE_SIZE_MAX);
+
 export default function Listing() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const pageSize = searchParams.get("size");
-  const page = searchParams.get("page");
+  const pageSize = pageSizeClamp(
+    parseInt(searchParams.get("size") || `${PAGE_SIZE}`, 10)
+  );
+  const page =
+    (parseInt(searchParams.get("page") || `${PAGE}`, 10) - 1) * pageSize;
 
   const {
     loading,
@@ -25,8 +34,8 @@ export default function Listing() {
     data: queryResult,
   } = useQuery(GET_PROPERTIES, {
     variables: {
-      pageSize: parseInt(pageSize || "20"),
-      offset: parseInt(page || "0"),
+      pageSize: pageSize,
+      offset: page,
     },
   });
 
@@ -35,6 +44,13 @@ export default function Listing() {
   const {
     properties: { data, count },
   }: QueryResult = queryResult;
+
+  // {offset} exceeds the records by absurd page query
+  // Set the page back to "1"
+  if (count !== 0 && data.length === 0) {
+    searchParams.set("page", "1");
+    setSearchParams(searchParams);
+  }
 
   return (
     <div className="px-6 md:px-36 lg:px-72">
