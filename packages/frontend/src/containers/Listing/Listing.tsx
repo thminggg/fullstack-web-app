@@ -5,6 +5,7 @@ import DetailSearch from "../../components/DetailSearch/DetailSearch";
 import Error from "../../components/Error/Error";
 import ListingCard from "../../components/ListingCard/ListingCard";
 import Loader from "../../components/Loader/Loader";
+import PageBar from "../../components/PageBar/PageBar";
 import { GET_PROPERTIES } from "../../graphql/queries/getProperties";
 import { clamp } from "../../utils/utils";
 
@@ -25,8 +26,7 @@ export default function Listing() {
   const pageSize = pageSizeClamp(
     parseInt(searchParams.get("size") || `${PAGE_SIZE}`, 10)
   );
-  const page =
-    (parseInt(searchParams.get("page") || `${PAGE}`, 10) - 1) * pageSize;
+  const page = parseInt(searchParams.get("page") || `${PAGE}`, 10);
 
   const {
     loading,
@@ -35,7 +35,7 @@ export default function Listing() {
   } = useQuery(GET_PROPERTIES, {
     variables: {
       pageSize: pageSize,
-      offset: page,
+      offset: (page - 1) * pageSize,
     },
   });
 
@@ -67,6 +67,7 @@ export default function Listing() {
           />
         ))}
       </div>
+      <PageBar currentPage={page} totalPages={count} />
     </div>
   );
 }
