@@ -51,11 +51,13 @@ export default function Listing() {
     searchParams.set("page", "1");
     setSearchParams(searchParams);
   }
+  const totalPages = Math.ceil(count / pageSize);
 
   return (
     <div className="px-6 md:px-36 lg:px-72">
       <DetailSearch />
-      <div className="mt-3 text-xs text-center">{count} Results</div>
+      <div className="mt-6 text-xs text-center">{count} Results</div>
+      <PageBar currentPage={page} totalPages={totalPages} />
       <div className="flex flex-wrap gap-3 justify-center mt-6">
         {data.map((property, index) => (
           <ListingCard
@@ -67,7 +69,7 @@ export default function Listing() {
           />
         ))}
       </div>
-      <PageBar currentPage={page} totalPages={count} />
+      <PageBar className="mt-3" currentPage={page} totalPages={totalPages} />
     </div>
   );
 }
