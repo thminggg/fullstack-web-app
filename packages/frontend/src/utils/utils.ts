@@ -16,3 +16,12 @@ export const randomRangeInArray = <T>(arr: Array<T>, numOfItems: number) => {
 export const clamp = (min: number = 0, max: number = Infinity) => {
   return (value: number) => Math.max(min, Math.min(value, max));
 };
+
+/**
+ * Captialize the first letter
+ * @param str string
+ * @returns
+ */
+export const capitalizeFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
