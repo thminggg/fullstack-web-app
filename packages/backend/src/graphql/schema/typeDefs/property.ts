@@ -25,6 +25,6 @@ export default /* GraphQL */ `
   }
 
   type Query {
-    properties(pageSize: Int, offset: Int): DBResult
+    properties(pageSize: Int, offset: Int, filters: [String]): DBResult
   }
 `;

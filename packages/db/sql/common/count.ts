@@ -1,19 +1,12 @@
-import { SCHEMA } from "../../const";
-import postgresSQL from "../../db";
-import postgres from "postgres";
+import { Knex } from "knex";
 
 /**
  * Get the total count of a SQL query
- * @param {postgres.PendingQuery<postgres.Row[]>} table Table of the original query
+ * @param {Knex.QueryBuilder} table Table of the original query
  * @returns {number} Number of records
  */
-export const getCount = async (
-  table: postgres.PendingQuery<postgres.Row[]>
-) => {
-  const [count] = await postgresSQL`
-    select count(*)
-    from ${table}
-  `;
+export const getCount = async (query: Knex.QueryBuilder) => {
+  const [{ count }] = await query.count("*");
 
-  return parseInt(count?.count);
+  return parseInt(`${count}`);
 };

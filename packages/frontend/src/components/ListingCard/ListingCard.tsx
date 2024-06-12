@@ -1,8 +1,8 @@
+import { Property } from "@thminggg/db";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Card } from "flowbite-react";
 import { formatCurrency } from "../../utils/number";
 import styles from "./ListingCard.module.css";
-import { Property } from "@thminggg/db";
 
 const customTheme: CustomFlowbiteTheme["card"] = {
   root: {
@@ -46,7 +46,7 @@ export default function ListingCard({
           {address} • {city} • {province}
         </p>
         <p className="text-md">
-          {num_of_bathroom} bd • {num_of_bedroom} ba • {size} sqft
+          {num_of_bedroom} bed • {num_of_bathroom} bath • {size} sqft
         </p>
       </div>
     </Card>

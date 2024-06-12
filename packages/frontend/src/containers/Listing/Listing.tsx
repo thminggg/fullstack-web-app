@@ -27,31 +27,43 @@ export default function Listing() {
     parseInt(searchParams.get("size") || `${PAGE_SIZE}`, 10)
   );
   const page = parseInt(searchParams.get("page") || `${PAGE}`, 10);
+  const bedroom = searchParams.get("bedroom")
+    ? `num_of_bedroom >= ${searchParams.get("bedroom")}`
+    : "";
+
+  const fetchVars = {
+    pageSize: pageSize,
+    offset: (page - 1) * pageSize,
+    filters: [bedroom],
+  };
 
   const {
     loading,
     error,
     data: queryResult,
   } = useQuery(GET_PROPERTIES, {
-    variables: {
-      pageSize: pageSize,
-      offset: (page - 1) * pageSize,
-    },
+    variables: fetchVars,
   });
 
   if (loading) return <Loader />;
   if (error) return <Error error={error} />;
+
   const {
     properties: { data, count },
   }: QueryResult = queryResult;
+  const totalPages = Math.ceil(count / pageSize);
 
   // {offset} exceeds the records by absurd page query
   // Set the page back to "1"
   if (count !== 0 && data.length === 0) {
-    searchParams.set("page", "1");
-    setSearchParams(searchParams);
+    // Use setTimeout to put updating search params as background task
+    // Avoid state update in the middle of rendering
+    setTimeout(() => {
+      searchParams.set("page", "1");
+      setSearchParams(searchParams);
+    }, 0);
+    return <Loader />;
   }
-  const totalPages = Math.ceil(count / pageSize);
 
   return (
     <div className="px-6 md:px-36 lg:px-72">

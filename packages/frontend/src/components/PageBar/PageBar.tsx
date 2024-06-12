@@ -1,13 +1,12 @@
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Pagination } from "flowbite-react";
-import { MouseEventHandler, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const customTheme: CustomFlowbiteTheme["pagination"] = {
   pages: {
     base: "flex items-center -space-x-px justify-center",
     selector: {
-      base: "w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+      base: "w-6 md:w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
       active:
         "bg-amber-50 text-amber-600 hover:bg-amber-100 hover:text-amber-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
     },
@@ -45,17 +44,17 @@ export default function PageBar({
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const onPageChange = (page: number) => {
-    searchParams?.set("page", `${page}`);
+    searchParams.set("page", `${page}`);
     setSearchParams(searchParams);
   };
-  const goFirstPage = useCallback(() => {
-    searchParams?.set("page", `1`);
+  const goFirstPage = () => {
+    searchParams.set("page", `1`);
     setSearchParams(searchParams);
-  }, []);
-  const goLastPage = useCallback(() => {
-    searchParams?.set("page", `${totalPages}`);
+  };
+  const goLastPage = () => {
+    searchParams.set("page", `${totalPages}`);
     setSearchParams(searchParams);
-  }, []);
+  };
 
   return (
     <div className={`flex justify-between items-center ${className}`}>
