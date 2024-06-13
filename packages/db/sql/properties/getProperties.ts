@@ -8,12 +8,14 @@ import { getCount } from "../common/count";
  * @param {number} pageSize
  * @param {number} offset
  * @param {string[]} filters
+ * @param {string[]} orderBys
  * @returns
  */
 export const getProperties = async (
   pageSize: number = 20,
   offset: number = 0,
-  filters?: string[]
+  filters?: string[],
+  orderBys?: string[]
 ): Promise<DBResult<Property>> => {
   const table = "property";
   const query = knexSQL(table).select("*");
@@ -21,8 +23,15 @@ export const getProperties = async (
 
   // Apply filters
   filters?.forEach((filter) => {
-    query.andWhere(knexSQL.raw(filter));
-    countQuery.andWhere(knexSQL.raw(filter));
+    if (filter) {
+      query.andWhere(knexSQL.raw(filter));
+      countQuery.andWhere(knexSQL.raw(filter));
+    }
+  });
+
+  // Apply order by
+  orderBys?.forEach((orderBy) => {
+    if (orderBy) query.orderByRaw(orderBy);
   });
 
   // Apply limit and offset

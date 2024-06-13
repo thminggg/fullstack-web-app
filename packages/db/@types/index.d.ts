@@ -1,8 +1,7 @@
-export { default as users } from "../users";
 export { default as properties } from "../sql/properties";
-export { default as knex } from "../knex/knex";
-export * from "./user";
+export { default as users } from "../sql/users";
 export * from "./property";
+export * from "./user";
 export type DBResult<T> = {
   data: T[];
   count: number;
