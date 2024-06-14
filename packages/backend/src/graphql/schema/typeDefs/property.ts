@@ -19,12 +19,25 @@ export default /* GraphQL */ `
     tour_id: String
   }
 
-  type DBResult {
+  type PropertiesResult {
     data: [Property]
     count: Int!
   }
 
+  type PropertyResult {
+    data: Property
+    count: Int!
+  }
+
   type Query {
-    properties(pageSize: Int, offset: Int, filters: [String]): DBResult
+    properties(
+      pageSize: Int
+      offset: Int
+      filters: [String]
+      orderBys: [String]
+      searchQuery: String
+    ): PropertiesResult
+
+    property(brokerId: String, propertyId: String): PropertyResult
   }
 `;

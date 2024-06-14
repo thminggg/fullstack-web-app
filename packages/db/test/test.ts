@@ -1,4 +1,3 @@
-import { getUsers } from "../sql/users/getUsers";
 import { getProperties } from "../sql/properties/getProperties";
 
 const main = async () => {
