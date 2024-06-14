@@ -22,6 +22,6 @@ export const clamp = (min: number = 0, max: number = Infinity) => {
  * @param str string
  * @returns
  */
-export const capitalizeFirstLetter = (str: string) => {
+export const capFirst = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
