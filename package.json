@@ -6,7 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "chmod +x ./scripts/dev.sh && ./scripts/dev.sh"
+    "dev": "chmod +x ./scripts/dev.sh && ./scripts/dev.sh",
+    "dev:be": "chmod +x ./scripts/dev.sh && ./scripts/dev.sh -b"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",

@@ -6,7 +6,8 @@
     "clean": "rm -rf dist",
     "compile": "yarn run clean && tsc && tsc-alias",
     "dev": "npx lerna run compile && node ./dist/index.js",
-    "dev:watch": "nodemon -e ts --ignore dist/ --exec \"yarn run dev\""
+    "dev:watch": "nodemon -e ts --ignore dist/ --exec \"yarn run dev\"",
+    "dev:be": "npx lerna run compile && node ./dist/index.js"
   },
   "keywords": [],
   "author": "Patrick T",
