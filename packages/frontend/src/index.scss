@@ -1,3 +1,4 @@
+@use 'scss/common/shared' as *;
 @import url("https://fonts.googleapis.com/css?family=Inter:wght@400;600;700;+Cinzel:wght@400;600;700+Cormorant:wght@400;600;700");
 @tailwind base;
 @tailwind components;
@@ -5,8 +6,8 @@
 
 body {
   margin: 0;
-  background-color: #fbf8f4;
-  font-family: Inter, Cormorant, Cinzel, -apple-system, sans-serif;
+  background-color: $bg-color;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

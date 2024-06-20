@@ -1,3 +1,5 @@
+@use '../../scss/common/shared' as *;
+
 * {
   font-family: Cormorant;
 }
@@ -20,6 +22,11 @@ input:focus {
 
 .filterBtn {
   border: 1px solid #b3a6a6;
+}
+
+.filterBtn:hover,
+.activeBtn {
+  background: $btn-color;
 }
 
 .optionBtn {

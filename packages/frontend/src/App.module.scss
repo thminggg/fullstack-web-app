@@ -1,8 +1,10 @@
+@use 'scss/common/shared' as *;
+
 .backgroundImg {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #fbf8f4;
+  background-color: $bg-color;
   min-height: 100vh;
 }
 
@@ -14,7 +16,7 @@
   background: linear-gradient(
     to bottom,
     rgba(251, 248, 244, 0) 50%,
-    #fbf8f4 95%
+    $bg-color 95%
   );
 }
 
