@@ -1,4 +1,5 @@
 import { properties } from "@thminggg/db";
+import { brokers, brokerCompanies } from "@thminggg/db";
 
 export default {
   Query: {
@@ -37,8 +38,22 @@ export default {
         propertyId: string;
       }
     ) => {
-      const { data } = await properties.getProperty(brokerId, propertyId);
-      return { data };
+      const { data: propertyData } = await properties.getProperty(
+        brokerId,
+        propertyId
+      );
+      const { data: brokerData } = await brokers.getBroker(
+        propertyData.broker_id
+      );
+      const { data: brokerCompanyData } =
+        await brokerCompanies.getBrokerCompany(brokerData.broker_company_id);
+      return {
+        data: {
+          property: propertyData,
+          broker: brokerData,
+          brokerCompany: brokerCompanyData,
+        },
+      };
     },
   },
 };
