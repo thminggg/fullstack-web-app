@@ -1,6 +1,6 @@
-import styles from "./App.module.css";
-import FeatureDeal from "./components/FeatureDeal/FeatureDeal";
-import Search from "./components/Search/Search";
+import FeatureDeal from "../../components/FeatureDeal/FeatureDeal";
+import Search from "../../components/Search/Search";
+import styles from "./App.module.scss";
 
 const Slogan = () => {
   return (
