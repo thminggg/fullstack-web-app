@@ -5,9 +5,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "compile": "yarn run clean && tsc && tsc-alias",
-    "dev": "npx lerna run compile && node ./dist/index.js",
-    "dev:watch": "nodemon -e ts --ignore dist/ --exec \"yarn run dev\"",
-    "dev:be": "npx lerna run compile && node ./dist/index.js"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' ./src/index.ts",
+    "dev:be": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' ./src/index.ts"
   },
   "keywords": [],
   "author": "Patrick T",
@@ -26,11 +25,12 @@
     "express-jwt": "^8.4.1",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.6",
-    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2"
   }

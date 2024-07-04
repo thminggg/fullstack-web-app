@@ -19,13 +19,11 @@ if ! docker info > /dev/null 2>&1; then
   exit 1
 fi
 
-# Compile
-npx lerna run compile
 
 # Run dev
 if [ "$backend_only" = false ]; then
-  npx lerna run dev
+  concurrently 'lerna run dev --scope @thminggg/frontend' 'lerna run dev --scope @thminggg/db' 'nodemon --watch "packages/db/dist" --exec "lerna run dev:be --scope @thminggg/backend"'
 else
-  npx lerna run dev:be
+  concurrently 'lerna run dev:be --scope @thminggg/db' 'nodemon --watch "packages/db/dist" --exec "lerna run dev:be --scope @thminggg/backend"'
 fi
 

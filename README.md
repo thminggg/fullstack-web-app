@@ -9,4 +9,4 @@ Fullstack web developement project of real estate to utilize following stacks:
 5. Docker
 6. K8S
 7. Bash
-8. Mono Repository with `lerna`
+8. Mono Repository with `lerna` & `concurrently`
