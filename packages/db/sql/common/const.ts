@@ -19,3 +19,8 @@ export const BROKER_DB_FIELDS = {
 export const BROKER_COMPANY_DB_FIELDS = {
   ID: "broker_company_id",
 };
+
+export const USER_DB_FIELDS = {
+  EMAIL: "email",
+  USERNAME: "username",
+};
