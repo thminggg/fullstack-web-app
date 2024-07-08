@@ -3,8 +3,9 @@ CREATE TABLE
     user_id UUID PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     username VARCHAR(255),
-    phone VARCHAR(255),
     access_right VARCHAR(255)
+    -- FK
+    broker_id UUID REFERENCES public.broker (broker_id)
   );
 
 CREATE TABLE
@@ -25,7 +26,8 @@ CREATE TABLE
     name VARCHAR(255),
     phone VARCHAR(255),
     -- FK
-    broker_company_id UUID REFERENCES public.broker_company (broker_company_id)
+    broker_company_id UUID REFERENCES public.broker_company (broker_company_id),
+    user_id UUID REFERENCES public.user (user_id)
   );
 
 CREATE TABLE
