@@ -22,7 +22,7 @@ fi
 
 # Run dev
 if [ "$backend_only" = false ]; then
-  concurrently 'lerna run dev --scope @thminggg/frontend' 'lerna run dev --scope @thminggg/db' 'nodemon --watch "packages/db/dist" --exec "lerna run dev:be --scope @thminggg/backend"'
+  concurrently 'lerna run dev --scope @thminggg/frontend' 'lerna run dev --scope @thminggg/db' 'nodemon --watch "packages/db/dist" --exec "lerna run dev --scope @thminggg/backend"'
 else
   concurrently 'lerna run dev:be --scope @thminggg/db' 'nodemon --watch "packages/db/dist" --exec "lerna run dev:be --scope @thminggg/backend"'
 fi
