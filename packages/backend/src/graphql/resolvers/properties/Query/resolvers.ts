@@ -19,13 +19,13 @@ export default {
         searchQuery: string;
       }
     ) => {
-      const { data, count } = await properties.getProperties(
+      const { data, count } = await properties.getProperties({
         pageSize,
         offset,
         filters,
         orderBys,
-        searchQuery
-      );
+        searchQuery,
+      });
       return { data, count };
     },
     property: async (

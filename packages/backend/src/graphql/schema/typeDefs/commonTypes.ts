@@ -44,6 +44,12 @@ export default /* GraphQL */ `
     broker_company_id: String
   }
 
+  input BrokerInput {
+    name: String
+    phone: String
+    broker_company_id: String
+  }
+
   type BrokerCompany {
     broker_company_id: String
     name: String
