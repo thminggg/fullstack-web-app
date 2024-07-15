@@ -1,8 +1,10 @@
 # Real Estate Web App
 
-This repository demonstrates a fullstack real estate web app built in a mono repository composed by "Frontend", "Backend" and "Database".
+Fullstack web app built in a mono repository composed by "Frontend", "Backend" and "Database".
 
 ## Live Demo
+
+https://github.com/user-attachments/assets/82e3ac17-053c-4085-a9fe-77e783e041a7
 
 ## Project Structure
 
