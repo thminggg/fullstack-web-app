@@ -1,12 +1,22 @@
-# Real Estate
+# Real Estate Web App
 
-Fullstack web developement project of real estate to utilize following stacks:
+This repository demonstrates a fullstack real estate web app built in a mono repository composed by "Frontend", "Backend" and "Database".
 
-1. ReactJS
-2. GraphQL
-3. Postgres DB
-4. SCSS
-5. Docker
-6. K8S
-7. Bash
-8. Mono Repository with `lerna` & `concurrently`
+## Live Demo
+
+## Project Structure
+
+![Project Structure](/real-estate.drawio.png)
+
+## Tech Stack
+
+1. React.js
+1. React Router
+1. GraphQL
+1. Express.js
+1. Knex.js
+1. PostgresSQL
+1. Google Firebase
+1. SCSS
+1. Bash
+1. Mono Repository with `Lerna`
