@@ -3,8 +3,9 @@
 Fullstack web app built in a mono repository composed by "Frontend", "Backend" and "Database".
 
 ## Live Demo
+https://github.com/user-attachments/assets/a1483c58-4224-422b-bd0d-0d9445dfd6d7
 
-https://github.com/user-attachments/assets/82e3ac17-053c-4085-a9fe-77e783e041a7
+
 
 ## Project Structure
 
