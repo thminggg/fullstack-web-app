@@ -6,4 +6,12 @@ export default /* GraphQL */ `
   type Query {
     broker(brokerId: String): BrokerResult
   }
+
+  type CreateBrokersResult {
+    data: [String]
+  }
+
+  type Mutation {
+    brokers(brokerData: [BrokerInput]): CreateBrokersResult
+  }
 `;
