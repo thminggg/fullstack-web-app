@@ -13,13 +13,19 @@ import { tokenizeSearch } from "../common/tokenizeSearch";
  * @param {string} searchQuery
  * @returns
  */
-export const getProperties = async (
-  pageSize: number = 20,
-  offset: number = 0,
-  filters?: string[],
-  orderBys?: string[],
-  searchQuery?: string
-): Promise<DBResult<Property[]>> => {
+export const getProperties = async ({
+  pageSize = 20,
+  offset = 0,
+  filters,
+  orderBys,
+  searchQuery,
+}: {
+  pageSize: number;
+  offset: number;
+  filters?: string[];
+  orderBys?: string[];
+  searchQuery?: string;
+}): Promise<DBResult<Property[]>> => {
   const table = "property";
   const query = knexSQL(table).select("*");
   const countQuery = knexSQL(table);

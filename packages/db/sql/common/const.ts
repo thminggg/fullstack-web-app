@@ -21,6 +21,8 @@ export const BROKER_COMPANY_DB_FIELDS = {
 };
 
 export const USER_DB_FIELDS = {
+  ID: "user_id",
   EMAIL: "email",
   USERNAME: "username",
+  BROKER_ID: "broker_id",
 };

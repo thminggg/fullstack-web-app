@@ -13,12 +13,12 @@ export const getProperty = async (
   brokerId: string,
   propertyId: string
 ): Promise<Omit<DBResult<Property>, "count">> => {
-  const properties: Property = await knexSQL("property")
+  const property: Property = await knexSQL("property")
     .first("*")
     .where({
       [PROPERTY_DB_FIELDS.BROKER]: brokerId,
       [PROPERTY_DB_FIELDS.ID]: propertyId,
     });
 
-  return { data: properties };
+  return { data: property };
 };

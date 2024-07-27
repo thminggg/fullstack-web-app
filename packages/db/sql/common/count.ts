@@ -8,5 +8,5 @@ import { Knex } from "knex";
 export const getCount = async (query: Knex.QueryBuilder) => {
   const [{ count }] = await query.count("*");
 
-  return parseInt(`${count}`);
+  return Number(count);
 };

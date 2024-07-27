@@ -7,11 +7,11 @@ export type Property = {
   zip?: string;
   country?: string;
   listing_price?: number;
-  num_of_bathroom?: string;
-  num_of_bedroom?: string;
-  num_of_view?: string;
+  num_of_bathroom?: number;
+  num_of_bedroom?: number;
+  num_of_view?: number;
   listed_timestamp: number;
-  size: string;
+  size: number;
   type: string;
   overview?: string;
   broker_id?: string;
