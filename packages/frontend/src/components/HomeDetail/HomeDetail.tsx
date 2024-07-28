@@ -8,10 +8,12 @@ export default function HomeDetail() {
     <>
       <div className="font-bold text-xl my-6">Home facts and features</div>
       <table className="border-separate border-spacing-x-2">
-        <PriceDetail />
-        <HomeFact />
-        <AgentDetail />
-        <ListingDetail />
+        <tbody>
+          <PriceDetail />
+          <HomeFact />
+          <AgentDetail />
+          <ListingDetail />
+        </tbody>
       </table>
     </>
   );

@@ -8,8 +8,10 @@ import * as jwt from "jsonwebtoken";
 import resolvers from "./graphql/resolvers/index";
 import typeDefs from "./graphql/schema/index";
 
-const main = async () => {
-  const PORT = 9000;
+let app;
+const PORT = 9000;
+
+const build = async () => {
   const app = express();
   app.use(cors(), express.json());
 
@@ -46,10 +48,22 @@ const main = async () => {
     res.send("Authorized access!");
   });
 
-  app.listen({ port: PORT }, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`GraphQL endpoint: http://localhost:${PORT}/graphql`);
-  });
+  return app;
 };
 
-main();
+if (require.main === module) {
+  (async () => {
+    app = await build();
+
+    app.listen({ port: PORT }, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log(`GraphQL endpoint: http://localhost:${PORT}/graphql`);
+    });
+  })();
+} else {
+  (async () => {
+    app = await build();
+  })();
+}
+
+export default app;

@@ -1,72 +1,85 @@
-import { Carousel } from "flowbite-react";
+import { useQuery } from "@apollo/client";
+import { BrokerCompany, Broker as BrokerType, Property } from "@thminggg/db";
 import { useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate, useParams } from "react-router-dom";
 import Broker from "../../components/Broker/Broker";
+import Error from "../../components/Error/Error";
 import HomeDetail from "../../components/HomeDetail/HomeDetail";
 import HomeOverview from "../../components/HomeOverview/HomeOverview";
+import Loader from "../../components/Loader/Loader";
 import TourBooking from "../../components/TourBooking/TourBooking";
-import { formatCurrency } from "../../utils/number";
+import Address from "../../components/UnitDetail/Address";
+import BasicInfo from "../../components/UnitDetail/BasicInfo";
+import Gallery from "../../components/UnitDetail/Gallery";
+import PriceAndMortgage from "../../components/UnitDetail/PriceAndMortgage";
+import { GET_PROPERTY } from "../../graphql/queries/getProperty";
+import { UnitProvider } from "./UnitProvider";
 
-const PriceAndMortgage = () => (
-  <div className="flex items-end">
-    <span className="text-3xl font-bold mr-3">{formatCurrency(1169000)}</span>
-    <span>
-      Est. {formatCurrency(5730)}
-      /mo
-    </span>
-  </div>
-);
-
-const Address = () => (
-  <div className="flex flex-wrap font-semibold">
-    <div className="w-full text-lg">1102 8555 Granville Street</div>
-    <div className="w-full">Vancouver, BC, V6P 0C3</div>
-  </div>
-);
-
-const BasicInfo = () => (
-  <div className="tracking-wider">2 Bed • 2 Bath • 1018 Sqft • Apt/Condo</div>
-);
-
-const Gallery = () => (
-  <div className="h-96">
-    <Carousel slide={false}>
-      <img src="/condos/1.jpg" alt="..." />
-      <img src="/condos/2.jpg" alt="..." />
-      <img src="/condos/3.jpg" alt="..." />
-      <img src="/condos/4.jpg" alt="..." />
-      <img src="/condos/5.jpg" alt="..." />
-      <img src="/condos/6.jpg" alt="..." />
-      <img src="/condos/7.jpg" alt="..." />
-    </Carousel>
-  </div>
-);
+type PropertyQueryResult = {
+  property: {
+    data: {
+      property: Property;
+      broker: BrokerType;
+      brokerCompany: BrokerCompany;
+    };
+  };
+};
 
 export default function Unit() {
+  const navigate = useNavigate();
   const [tourDate, setTourDate] = useState<Date>();
   const params = useParams();
+  const { brokerId, propertyId } = params;
 
-  // TODO: fetch data from server
-  console.log(useLoaderData());
-  console.log(params);
+  const {
+    loading,
+    error,
+    data: queryResult,
+  } = useQuery<PropertyQueryResult>(GET_PROPERTY, {
+    variables: {
+      brokerId: brokerId,
+      propertyId: propertyId,
+    },
+  });
+
+  if (loading) return <Loader />;
+  if (error) return <Error error={error} />;
 
   return (
     <div className="px-6 md:px-24 lg:px-30">
       <div className="flex flex-wrap justify-between lg:flex-nowrap py-6 px-6 gap-6">
-        <div className="w-full lg:w-8/12">
-          <div className="flex flex-col gap-3">
-            <PriceAndMortgage />
-            <Address />
-            <BasicInfo />
-            <Gallery />
-            <HomeOverview />
-            <HomeDetail />
+        <UnitProvider
+          unitData={
+            {
+              property: { ...queryResult?.property?.data?.property },
+              broker: { ...queryResult?.property?.data?.broker },
+              brokerCompany: { ...queryResult?.property?.data?.brokerCompany },
+            } ?? null
+          }
+        >
+          <div className="w-full lg:w-8/12">
+            <div className="flex flex-col gap-3">
+              <button
+                className="flex items-center"
+                onClick={() => navigate(-1)}
+              >
+                <IoMdArrowRoundBack className="text-2xl inline-block" />
+                <p className="text-xl inline-block">back</p>
+              </button>
+              <PriceAndMortgage />
+              <Address />
+              <BasicInfo />
+              <Gallery />
+              <HomeOverview />
+              <HomeDetail />
+            </div>
           </div>
-        </div>
-        <div className="w-full lg:w-1/12 lg:grow lg:mx-auto">
-          <Broker />
-          <TourBooking handleSetTourDate={setTourDate} />
-        </div>
+          <div className="w-full lg:w-1/12 lg:grow lg:mx-auto">
+            <Broker />
+            <TourBooking handleSetTourDate={setTourDate} />
+          </div>
+        </UnitProvider>
       </div>
     </div>
   );

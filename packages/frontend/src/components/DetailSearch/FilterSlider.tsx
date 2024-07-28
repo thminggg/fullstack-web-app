@@ -20,7 +20,7 @@ export const FilterSlider = ({
   defaultVal?: number;
 }) => {
   const [value, setValue] = useState(
-    parseInt(searchParams.get(searchParamName) || `${defaultVal}`)
+    Number(searchParams.get(searchParamName) || defaultVal)
   );
 
   return (
@@ -38,7 +38,7 @@ export const FilterSlider = ({
         step={step}
         value={value}
         onChange={(e) => {
-          setValue(parseInt(e.target.value || `${defaultVal}`));
+          setValue(Number(e.target.value || defaultVal));
           e.target.value === "0"
             ? searchParams.delete(searchParamName)
             : searchParams.set(searchParamName, e.target.value);

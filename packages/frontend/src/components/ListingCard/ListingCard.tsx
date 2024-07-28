@@ -1,6 +1,7 @@
 import { Property } from "@thminggg/db";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Card } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/number";
 import styles from "./ListingCard.module.css";
 
@@ -25,7 +26,9 @@ export default function ListingCard({
   property: Property;
   image: string;
 }) {
+  const navigate = useNavigate();
   const {
+    property_id,
     name,
     address,
     city,
@@ -34,9 +37,16 @@ export default function ListingCard({
     num_of_bathroom,
     num_of_bedroom,
     size,
+    broker_id,
   } = property;
   return (
-    <Card theme={customTheme} horizontal imgSrc={image}>
+    <Card
+      theme={customTheme}
+      horizontal
+      imgSrc={image}
+      className="cursor-pointer"
+      onClick={() => navigate(`/properties/${broker_id}/${property_id}`)}
+    >
       <div className="flex flex-col h-full justify-center gap-3">
         <p className={`${styles.listing_price} text-2xl font-bold`}>
           {listing_price && formatCurrency(listing_price)}

@@ -1,33 +1,55 @@
-import { useEffect, useState } from "react";
-import { randomAddress, fetchAddresses } from "../../utils/address";
+import { useQuery } from "@apollo/client";
+import { Property } from "@thminggg/db";
+import { GET_PROPERTIES } from "../../graphql/queries/getProperties";
+import { getRandomNumber } from "../../utils/utils";
+import Error from "../Error/Error";
+import Loader from "../Loader/Loader";
 import FeatureCard from "./FeatureCard";
 
-export default function FeatureDeal() {
-  const [featureAddresses, setFeatureAddresses] = useState<string[]>([]);
+type QueryResult = {
+  properties: {
+    data: Property[];
+    count: number;
+  };
+};
 
-  useEffect(() => {
-    fetchAddresses("BC", setFeatureAddresses);
-  }, []);
+export default function FeatureDeal() {
+  const {
+    loading,
+    error,
+    data: queryResult,
+  } = useQuery(GET_PROPERTIES, {
+    variables: {
+      pageSize: 3,
+    },
+  });
+  const randomImageSeed = getRandomNumber(
+    Number(process.env.REACT_APP_CONDOS_IMG)
+  );
+
+  if (loading) return <Loader />;
+  if (error) return <Error error={error} />;
+
+  const {
+    properties: { data, count },
+  } = queryResult as QueryResult;
 
   return (
     <div className="mt-6 p-6 lg:w-8/12 mx-auto">
       <div className="w-full mb-3 text-lg font-bold">Top Deals</div>
       <div className="flex flex-wrap md:flex-nowrap gap-3">
-        <FeatureCard
-          title="The Modern"
-          description={randomAddress(featureAddresses)}
-          image="townhouses/1.jpg"
-        />
-        <FeatureCard
-          title="Park Royal"
-          description={randomAddress(featureAddresses)}
-          image="townhouses/2.jpg"
-        />
-        <FeatureCard
-          title="Riviera Gardens"
-          description={randomAddress(featureAddresses)}
-          image="townhouses/3.jpg"
-        />
+        {count > 0 &&
+          data.map((property, index) => (
+            <FeatureCard
+              key={index}
+              property={property}
+              image={`condos/compressed_${
+                ((index + randomImageSeed) %
+                  Number(process.env.REACT_APP_CONDOS_IMG)) +
+                1
+              }.jpg`}
+            />
+          ))}
       </div>
     </div>
   );

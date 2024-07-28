@@ -6,7 +6,7 @@ const customTheme: CustomFlowbiteTheme["pagination"] = {
   pages: {
     base: "flex items-center -space-x-px justify-center",
     selector: {
-      base: "w-6 md:w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+      base: "w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
       active:
         "bg-amber-50 text-amber-600 hover:bg-amber-100 hover:text-amber-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
     },
@@ -68,6 +68,8 @@ export default function PageBar({
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
+        previousLabel="<"
+        nextLabel=">"
       />
       <EndButton
         content=">>"

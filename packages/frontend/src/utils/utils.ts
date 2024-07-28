@@ -59,3 +59,7 @@ export const getRandomNumber = (max: number) => {
   // Generate a random number between 1 and max (both inclusive)
   return Math.floor(Math.random() * max) + 1;
 };
+
+export const isEmptyObj = (obj: Object) => {
+  if (!obj || Object.keys(obj).length === 0) return true;
+};

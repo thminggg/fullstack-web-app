@@ -1,8 +1,20 @@
 import { gql } from "@apollo/client";
 
 export const GET_PROPERTIES = gql`
-  query GetProperties($pageSize: Int, $offset: Int, $filters: [String]) {
-    properties(pageSize: $pageSize, offset: $offset, filters: $filters) {
+  query GetProperties(
+    $pageSize: Int
+    $offset: Int
+    $filters: [String]
+    $orderBys: [String]
+    $searchQuery: String
+  ) {
+    properties(
+      pageSize: $pageSize
+      offset: $offset
+      filters: $filters
+      orderBys: $orderBys
+      searchQuery: $searchQuery
+    ) {
       data {
         property_id
         name

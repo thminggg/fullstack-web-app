@@ -61,12 +61,11 @@ export default function PostingForm({ brokerId }: { brokerId?: string }) {
     [key: string]: string | number;
   }>({});
   const handleInputChange = (
-    event:
-      | FormEvent<HTMLInputElement>
-      | FormEvent<HTMLSelectElement>
-      | FormEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { id, value } = event.currentTarget;
+    const { id, value } = e.currentTarget;
     setFormState((prevState) => {
       console.log({
         ...prevState,

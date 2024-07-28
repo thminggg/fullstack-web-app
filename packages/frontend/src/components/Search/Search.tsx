@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SEARCH_PARAMS } from "../../common/const";
 import styles from "./Search.module.scss";
-import { Link } from "react-router-dom";
 
 export default function Search() {
   const navigate = useNavigate();
